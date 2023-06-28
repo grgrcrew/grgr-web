@@ -1,3 +1,39 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks", "unused-imports"],
+  "rules": {
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", ["sibling", "parent", "index"], "unknown"],
+        "pathGroups": [
+          {
+            "pattern": "@/components/**/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/pageComponents/**/*",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["next*"],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "react/react-in-jsx-scope": "off"
+  }
 }
